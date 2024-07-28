@@ -33,9 +33,9 @@ if __name__ == "__main__":
     software = utils.SoftwareCheck()
     if not software.run_checks():
         print("Some checks failed.")
-        os.exit(1)
+        os._exit(1)
     paths = utils.PathChecks()
     if not paths.run_checks():
         print("Some paths are missing.")
-        os.exit(1)
+        os._exit(1)
     
