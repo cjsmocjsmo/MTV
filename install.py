@@ -8,15 +8,18 @@ from dotenv import load_dotenv
 class BuildSoftware:
     def __init__(self):
         self.CWD = os.getcwd() # assuming /home/pi/MTV
-        self.DownLoadDir = self.CWD + "/"
+        self.setupdir = self.CWD + "/SetUp/"
+        os.mkdir(self.setupdir)
+        self.mtvdir = self.CWD + "/MTV/"
+        os.mkdir(self.mtvdir)
 
     def clone_setup(self):
         subprocess.run(
             [
                 "git", 
                 "clone", 
-                "https://github.com/cjsmocjsmo/rusicsetup.git", 
-                self.DownLoadDir,
+                "https://github.com/cjsmocjsmo/mtvsetup.git", 
+                self.setupdir,
             ])
         
     def clone_mtv_server(self):
@@ -25,7 +28,7 @@ class BuildSoftware:
                 "git", 
                 "clone", 
                 "https://github.com/cjsmocjsmo/mtvserverrust.git",
-                self.DownLoadDir,
+                self.mtvdir,
             ])
 
 if __name__ == "__main__":
