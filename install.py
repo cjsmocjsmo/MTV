@@ -11,6 +11,7 @@ class BuildSoftware:
         self.setupdir = self.CWD + "/SetUp/"
         if not os.path.isdir(self.setupdir):
             os.mkdir(self.setupdir)
+        self.mtvdir = self.CWD + "/MTV/"
         if not os.path.isdir(self.CWD + "/MTV/"):
             os.mkdir(self.CWD + "/MTV/")
 
