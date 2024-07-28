@@ -92,7 +92,15 @@ class PathChecks:
             return False
 
     def thumbnailpath_check(self):
-        return os.path.exists(os.getenv("MTV_THUMBNAIL_PATH"))
+        if os.path.exists(os.getenv("MTV_THUMBNAIL_PATH")):
+            return True
+        else:
+            os.mkdir(os.getenv("MTV_THUMBNAIL_PATH"))
+            if os.path.exists(os.getenv("MTV_THUMBNAIL_PATH")):
+                return True
+            else:
+                print("Thumbnail path is missing.")
+                return False
     
     def run_checks(self):
         dbpath = self.dbpath_check()
