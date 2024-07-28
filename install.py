@@ -9,9 +9,15 @@ class BuildSoftware:
     def __init__(self):
         self.CWD = os.getcwd() # assuming /home/pi/MTV
         self.setupdir = self.CWD + "/SetUp/"
-        os.mkdir(self.setupdir)
+        try:
+            os.mkdir(self.setupdir)
+        except FileExistsError:
+            pass
         self.mtvdir = self.CWD + "/MTV/"
-        os.mkdir(self.mtvdir)
+        try:
+            os.mkdir(self.mtvdir)
+        except FileExistsError:
+            pass
 
     def clone_setup(self):
         subprocess.run(
