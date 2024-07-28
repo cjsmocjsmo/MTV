@@ -49,8 +49,12 @@ class PathChecks:
         if os.path.exists(os.getenv("MTV_STATIC_PATH")):
             return True
         else:
-            print("Static path is missing.")
-            return False
+            print("Static path is missing. Creating Dir")
+            os.mkdir(os.getenv("MTV_STATIC_PATH"))
+            if os.path.exists(os.getenv("MTV_STATIC_PATH")):
+                return True
+            else:
+                return False
     
     def tvpath_check(self):
         if os.path.exists(os.getenv("MTV_TV_PATH")):
