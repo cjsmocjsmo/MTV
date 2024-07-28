@@ -39,25 +39,53 @@ class PathChecks:
             os.mkdir("/usr/share/MTV")
 
     def dbpath_check(self):
-        return os.path.exists(os.getenv("MTV_DB_PATH"))
+        if os.path.exists(os.getenv("MTV_DB_PATH")):
+            return True
+        else:
+            print("Database path is missing.")
+            return False
     
     def staticpath_check(self):
-        return os.path.exists(os.getenv("MTV_STATIC_PATH"))
+        if os.path.exists(os.getenv("MTV_STATIC_PATH")):
+            return True
+        else:
+            print("Static path is missing.")
+            return False
     
     def tvpath_check(self):
-        return os.path.exists(os.getenv("MTV_TV_PATH"))
+        if os.path.exists(os.getenv("MTV_TV_PATH")):
+            return True
+        else:
+            print("TV path is missing.")
+            return False
     
     def setuppath_check(self):
-        return os.path.exists(os.getenv("MTV_SETUP_PATH"))
+        if os.path.exists(os.getenv("MTV_SETUP_PATH")):
+            return True
+        else:
+            print("Setup path is missing.")
+            return
     
     def mtvpath_check(self):
-        return os.path.exists(os.getenv("MTV_MTV_PATH"))
+        if os.path.exists(os.getenv("MTV_MTV_PATH")):
+            return True
+        else:
+            print("MTV path is missing.")
+            return
     
     def moviespath_check(self):
-        return os.path.exists(os.getenv("MTV_MOVIES_PATH"))
+        if os.path.exists(os.getenv("MTV_MOVIES_PATH")):
+            return True
+        else:
+            print("Movies path is missing.")
+            return False
     
     def posterpath_check(self):
-        return os.path.exists(os.getenv("MTV_POSTER_PATH"))
+        if os.path.exists(os.getenv("MTV_POSTER_PATH")):
+            return True
+        else:
+            print("Poster path is missing.")
+            return False
 
     def thumbnailpath_check(self):
         return os.path.exists(os.getenv("MTV_THUMBNAIL_PATH"))
