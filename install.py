@@ -30,6 +30,16 @@ class BuildSoftware:
                 "https://github.com/cjsmocjsmo/mtvserverrust.git",
                 self.mtvdir,
             ])
+        
+    def build_setup(self):
+        os.chdir(self.setupdir)
+        subprocess.run(["cargo", "build", "--release"])
+        os.chdir(self.CWD)
+
+    def build_mtv_server(self):
+        os.chdir(self.mtvdir)
+        subprocess.run(["cargo", "build", "--release"])
+        os.chdir(self.CWD)
 
 if __name__ == "__main__":
     load_dotenv()
