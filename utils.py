@@ -168,6 +168,6 @@ class BuildSoftware:
             os.chdir(self.CWD)
 
     def move_setup_binary(self):
-        new_loc_dir = "/usr/bin/"
+        new_loc_dir = "/usr/local/bin/"
         binary_loc = "".join((self.setupdir, "target/release/mtvsetup"))
         shutil.copy2(binary_loc, new_loc_dir)
