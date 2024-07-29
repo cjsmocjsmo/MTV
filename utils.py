@@ -130,6 +130,7 @@ class BuildSoftware:
             print(self.setupdir)
             os.chdir(self.setupdir)
             subprocess.run(["git", "pull"])
+            subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
         else:
             print(self.setupdir)
