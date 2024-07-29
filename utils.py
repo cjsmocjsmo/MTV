@@ -75,7 +75,7 @@ class PathChecks:
             return True
         else:
             print("MTV path is missing.")
-            return
+            return False
     
     def moviespath_check(self):
         if os.path.exists(os.getenv("MTV_MOVIES_PATH")):
