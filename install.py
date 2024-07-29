@@ -1,5 +1,4 @@
 import os
-# import subprocess
 import utils
 from dotenv import load_dotenv
 
@@ -15,7 +14,4 @@ if __name__ == "__main__":
         os._exit(1)
     builder = utils.BuildSoftware()
     builder.clone_or_pull_build_setup()
-    
     builder.clone_or_pull_build_mtv_server()
-    # builder.build_mtv_server()
-    # builder.build_setup()

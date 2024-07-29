@@ -124,8 +124,6 @@ class BuildSoftware:
 
     def clone_or_pull_build_setup(self):
         foo = os.path.exists(self.setupdir)
-        print("this is foo")
-        print(foo)
         if foo:
             print(self.setupdir)
             os.chdir(self.setupdir)
@@ -133,7 +131,6 @@ class BuildSoftware:
             subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
         else:
-            print(self.setupdir)
             os.makedirs(self.setupdir)
             subprocess.run(
                 [
@@ -150,8 +147,6 @@ class BuildSoftware:
         
     def clone_or_pull_build_mtv_server(self):
         bar = os.path.exists(self.mtvdir)
-        print("this is bar")
-        print(bar)
         if bar:
             print(self.mtvdir)
             os.chdir(self.mtvdir)
@@ -159,7 +154,6 @@ class BuildSoftware:
             subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
         else:
-            print(self.mtvdir)
             os.makedirs(self.mtvdir)
             subprocess.run(
                 [
@@ -171,13 +165,3 @@ class BuildSoftware:
             os.chdir(self.mtvdir)
             subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
-        
-    # def build_setup(self):
-    #     os.chdir(self.setupdir)
-    #     subprocess.run(["cargo", "build", "--release"])
-    #     os.chdir(self.CWD)
-
-    # def build_mtv_server(self):
-    #     os.chdir(self.mtvdir)
-    #     subprocess.run(["cargo", "build", "--release"])
-    #     os.chdir(self.CWD)
