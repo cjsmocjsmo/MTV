@@ -124,11 +124,13 @@ class BuildSoftware:
 
     def clone_or_pull_setup(self):
         if os.path.exists(self.setupdir):
+            print(self.setupdir)
             os.chdir(self.setupdir)
             subprocess.run(["git", "pull"])
             os.chdir(self.CWD)
         else:
-            os.mkdir(self.setupdir)
+            print(self.setupdir)
+            os.makedirs(self.setupdir)
             subprocess.run(
                 [
                     "git", 
@@ -141,11 +143,13 @@ class BuildSoftware:
         
     def clone_or_pull_mtv_server(self):
         if os.path.exists(self.mtvdir):
+            print(self.mtvdir)
             os.chdir(self.mtvdir)
             subprocess.run(["git", "pull"])
             os.chdir(self.CWD)
         else:
-            os.mkdir(self.mtvdir)
+            print(self.mtvdir)
+            os.makedirs(self.mtvdir)
             subprocess.run(
                 [
                     "git", 
