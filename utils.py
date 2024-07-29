@@ -1,5 +1,7 @@
-import subprocess
 import os
+import shutil
+import subprocess
+
 
 class SoftwareCheck:
     def mpv_check(self):
@@ -164,3 +166,8 @@ class BuildSoftware:
             os.chdir(self.mtvdir)
             subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
+
+    def move_setup_binary(self):
+        new_loc_dir = "/usr/bin/"
+        binary_loc = "".join((self.setupdir, "target/release/mtvsetup"))
+        shutil.copy2(binary_loc, new_loc_dir)

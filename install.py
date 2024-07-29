@@ -16,3 +16,5 @@ if __name__ == "__main__":
     builder = utils.BuildSoftware(CWD)
     builder.clone_or_pull_build_setup()
     builder.clone_or_pull_build_mtv_server()
+
+    builder.move_setup_binary()
