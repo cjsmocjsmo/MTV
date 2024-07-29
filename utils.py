@@ -124,7 +124,8 @@ class BuildSoftware:
 
     def clone_or_pull_setup(self):
         foo = os.path.exists(self.setupdir)
-        print("this is foo: {}", foo)
+        print("this is foo")
+        print(foo)
         if foo:
             print(self.setupdir)
             os.chdir(self.setupdir)
