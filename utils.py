@@ -168,7 +168,7 @@ class BuildSoftware:
             os.chdir(self.CWD)
 
     def move_setup_binary(self):
-        new_loc_dir = "/usr/local/bin/"
+        new_loc_dir = "/usr/bin/"
         binary_loc = "".join((self.setupdir, "target/release/mtvsetup"))
         # shutil.copy(binary_loc, new_loc_dir)
         subprocess.run(["sudo", "cp", "-pvr", binary_loc, new_loc_dir])
