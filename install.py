@@ -14,8 +14,8 @@ if __name__ == "__main__":
         print("Some paths are missing.")
         os._exit(1)
     builder = utils.BuildSoftware()
-    builder.clone_or_pull_setup()
+    builder.clone_or_pull_build_setup()
     
-    # builder.clone_or_pull_mtv_server()
+    builder.clone_or_pull_build_mtv_server()
     # builder.build_mtv_server()
     # builder.build_setup()

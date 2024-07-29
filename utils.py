@@ -122,7 +122,7 @@ class BuildSoftware:
         self.setupdir = self.CWD + "/SetUp/"
         self.mtvdir = self.CWD + "/MTV/"
 
-    def clone_or_pull_setup(self):
+    def clone_or_pull_build_setup(self):
         foo = os.path.exists(self.setupdir)
         print("this is foo")
         print(foo)
@@ -148,11 +148,15 @@ class BuildSoftware:
         
             
         
-    def clone_or_pull_mtv_server(self):
-        if os.path.exists(self.mtvdir):
+    def clone_or_pull_build_mtv_server(self):
+        bar = os.path.exists(self.mtvdir)
+        print("this is bar")
+        print(bar)
+        if bar:
             print(self.mtvdir)
             os.chdir(self.mtvdir)
             subprocess.run(["git", "pull"])
+            subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
         else:
             print(self.mtvdir)
@@ -164,15 +168,16 @@ class BuildSoftware:
                     "https://github.com/cjsmocjsmo/mtvserverrust.git",
                     self.mtvdir,
                 ])
-        
-            
+            os.chdir(self.mtvdir)
+            subprocess.run(["cargo", "build", "--release"])
+            os.chdir(self.CWD)
         
     # def build_setup(self):
     #     os.chdir(self.setupdir)
     #     subprocess.run(["cargo", "build", "--release"])
     #     os.chdir(self.CWD)
 
-    def build_mtv_server(self):
-        os.chdir(self.mtvdir)
-        subprocess.run(["cargo", "build", "--release"])
-        os.chdir(self.CWD)
+    # def build_mtv_server(self):
+    #     os.chdir(self.mtvdir)
+    #     subprocess.run(["cargo", "build", "--release"])
+    #     os.chdir(self.CWD)
