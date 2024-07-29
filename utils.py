@@ -158,6 +158,6 @@ class BuildSoftware:
         os.chdir(self.CWD)
 
     def build_mtv_server(self):
-        os.chdir(self.self.mtvdir)
+        os.chdir(self.mtvdir)
         subprocess.run(["cargo", "build", "--release"])
         os.chdir(self.CWD)
