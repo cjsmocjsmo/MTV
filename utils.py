@@ -119,25 +119,25 @@ class PathChecks:
 class BuildSoftware:
     def __init__(self):
         self.CWD = os.getcwd() # assuming /home/pi/MTV  
+        self.setupdir = self.CWD + "/SetUp/"
+        self.mtvdir = self.CWD + "/MTV/"
 
     def clone_or_pull_setup(self):
-        setupdir = self.CWD + "/SetUp/"
-        if not os.path.exists(setupdir):
-            os.mkdir(setupdir)
+        if not os.path.exists(self.setupdir):
+            os.mkdir(self.setupdir)
             subprocess.run(
                 [
                     "git", 
                     "clone", 
                     "https://github.com/cjsmocjsmo/mtvsetup.git", 
-                    setupdir,
+                    self.setupdir,
                 ])
         else:
-            os.chdir(setupdir)
+            os.chdir(self.setupdir)
             subprocess.run(["git", "pull"])
             os.chdir(self.CWD)
         
     def clone_or_pull_mtv_server(self):
-        mtvdir = self.CWD + "/MTV/"
         if not os.path.exists(self.CWD + "/MTV/"):
             os.mkdir(self.CWD + "/MTV/")
             subprocess.run(
@@ -148,7 +148,7 @@ class BuildSoftware:
                     self.mtvdir,
                 ])
         else:
-            os.chdir(mtvdir)
+            os.chdir(self.mtvdir)
             subprocess.run(["git", "pull"])
             os.chdir(self.CWD)
         
@@ -158,6 +158,6 @@ class BuildSoftware:
         os.chdir(self.CWD)
 
     def build_mtv_server(self):
-        os.chdir(self.mtvdir)
+        os.chdir(self.self.mtvdir)
         subprocess.run(["cargo", "build", "--release"])
         os.chdir(self.CWD)
