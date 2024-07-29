@@ -15,7 +15,7 @@ if __name__ == "__main__":
         os._exit(1)
     builder = utils.BuildSoftware()
     builder.clone_or_pull_setup
-    builder.build_setup()
+    # builder.build_setup()
     builder.clone_or_pull_mtv_server()
-    builder.build_mtv_server()
+    # builder.build_mtv_server()
     
