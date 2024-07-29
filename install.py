@@ -17,4 +17,5 @@ if __name__ == "__main__":
     builder.clone_or_pull_build_setup()
     builder.clone_or_pull_build_mtv_server()
 
-    builder.move_setup_binary()
+    builder.copy_setup_binary()
+    builder.copy_mtvserverrust_binary()

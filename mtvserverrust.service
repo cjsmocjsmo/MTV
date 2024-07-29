@@ -1,0 +1,13 @@
+[Unit]
+Description=MTV service file
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/mtvserverrust
+Restart=always
+User=root
+Group=root
+
+
+[Install]
+WantedBy=multi-user.target
