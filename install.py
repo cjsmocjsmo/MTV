@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 
 if __name__ == "__main__":
     load_dotenv()
+    CWD = os.getcwd()
     software = utils.SoftwareCheck()
     if not software.run_checks():
         print("Some checks failed.")
@@ -12,6 +13,6 @@ if __name__ == "__main__":
     if not paths.run_checks():
         print("Some paths are missing.")
         os._exit(1)
-    builder = utils.BuildSoftware()
+    builder = utils.BuildSoftware(CWD)
     builder.clone_or_pull_build_setup()
     builder.clone_or_pull_build_mtv_server()

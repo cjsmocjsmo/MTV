@@ -117,8 +117,9 @@ class PathChecks:
             return False
         
 class BuildSoftware:
-    def __init__(self):
-        self.CWD = os.getcwd() # assuming /home/pi/MTV  
+    def __init__(self, CWD):
+        self.CWD = CWD
+        # self.CWD = os.getcwd() # assuming /home/pi/MTV  
         self.setupdir = self.CWD + "/SetUp/"
         self.mtvdir = self.CWD + "/MTV/"
 
@@ -142,8 +143,6 @@ class BuildSoftware:
             os.chdir(self.setupdir)
             subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
-        
-            
         
     def clone_or_pull_build_mtv_server(self):
         bar = os.path.exists(self.mtvdir)
