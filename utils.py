@@ -123,7 +123,11 @@ class BuildSoftware:
         self.mtvdir = self.CWD + "/MTV/"
 
     def clone_or_pull_setup(self):
-        if not os.path.exists(self.setupdir):
+        if os.path.exists(self.setupdir):
+            os.chdir(self.setupdir)
+            subprocess.run(["git", "pull"])
+            os.chdir(self.CWD)
+        else:
             os.mkdir(self.setupdir)
             subprocess.run(
                 [
@@ -132,14 +136,16 @@ class BuildSoftware:
                     "https://github.com/cjsmocjsmo/mtvsetup.git", 
                     self.setupdir,
                 ])
-        else:
-            os.chdir(self.setupdir)
-            subprocess.run(["git", "pull"])
-            os.chdir(self.CWD)
+        
+            
         
     def clone_or_pull_mtv_server(self):
-        if not os.path.exists(self.CWD + "/MTV/"):
-            os.mkdir(self.CWD + "/MTV/")
+        if os.path.exists(self.mtvdir):
+            os.chdir(self.mtvdir)
+            subprocess.run(["git", "pull"])
+            os.chdir(self.CWD)
+        else:
+            os.mkdir(self.mtvdir)
             subprocess.run(
                 [
                     "git", 
@@ -147,10 +153,8 @@ class BuildSoftware:
                     "https://github.com/cjsmocjsmo/mtvserverrust.git",
                     self.mtvdir,
                 ])
-        else:
-            os.chdir(self.mtvdir)
-            subprocess.run(["git", "pull"])
-            os.chdir(self.CWD)
+        
+            
         
     def build_setup(self):
         os.chdir(self.setupdir)
