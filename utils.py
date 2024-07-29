@@ -123,7 +123,9 @@ class BuildSoftware:
         self.mtvdir = self.CWD + "/MTV/"
 
     def clone_or_pull_setup(self):
-        if os.path.exists(self.setupdir):
+        foo = os.path.exists(self.setupdir)
+        print(foo)
+        if foo:
             print(self.setupdir)
             os.chdir(self.setupdir)
             subprocess.run(["git", "pull"])
