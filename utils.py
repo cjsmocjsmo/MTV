@@ -141,7 +141,8 @@ class BuildSoftware:
                     "clone", 
                     "https://github.com/cjsmocjsmo/mtvsetup.git", 
                     self.setupdir,
-                ])
+                ]
+            )
             os.chdir(self.setupdir)
             subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
@@ -162,7 +163,8 @@ class BuildSoftware:
                     "clone", 
                     "https://github.com/cjsmocjsmo/mtvserverrust.git",
                     self.mtvdir,
-                ])
+                ]
+            )
             os.chdir(self.mtvdir)
             subprocess.run(["cargo", "build", "--release"])
             os.chdir(self.CWD)
@@ -182,3 +184,67 @@ class BuildSoftware:
         binary_loc = "".join((self.mtvdir, "target/release/mtvserver"))
         # shutil.copy(binary_loc, new_loc_dir)
         subprocess.run(["sudo", "cp", "-pvr", binary_loc, new_loc_dir])
+
+class SystemdSetup:
+    def __init__(self, CWD):
+        self.CWD = CWD
+        self.sysd_dir = "/etc/systemd/system/"
+        self.service_file_path= "".join((self.sysd_dir, "mtvserverrust.service"))
+        self.serv_file_loc = "/".join((self.CWD, "mtvserverrust.service"))
+        
+    def service_file_check(self):
+        if os.path.exists(self.service_file_path):
+            return True
+        else:
+            return False
+
+    def copy_systemd_service_file(self):
+        subprocess.run(
+            [
+                "sudo", 
+                "cp", 
+                "-pvr", 
+                self.serv_file_loc, 
+                self.service_file_path,
+            ]
+        )
+
+    def enable_systemd_service(self):
+        subprocess.run(
+            [
+                "sudo", 
+                "systemctl", 
+                "enable", 
+                "mtvserverrust.service",
+            ]
+        )
+
+    def start_systemd_service(self):
+        subprocess.run(
+            [
+                "sudo", 
+                "systemctl", 
+                "start", 
+                "mtvserverrust.service",
+            ]
+        )
+
+    def stop_systemd_service(self):
+        subprocess.run(
+            [
+                "sudo", 
+                "systemctl", 
+                "stop", 
+                "mtvserverrust.service",
+            ]
+        )
+
+    def reload_systemd_service(self):
+        subprocess.run(
+            [
+                "sudo", 
+                "systemctl", 
+                "daemon-reload",
+            ]
+        )
+    
