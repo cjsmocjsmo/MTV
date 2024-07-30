@@ -38,7 +38,7 @@ class SoftwareCheck:
 class PathChecks:
     def __init__(self):
         if not os.path.isdir("/usr/share/MTV"):
-            os.mkdir("/usr/share/MTV")
+            subprocess.run(["sudo", "mkdir", "/usr/share/MTV"])
 
     def dbpath_check(self):
         if os.path.exists(os.getenv("MTV_DB_PATH")):
