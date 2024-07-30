@@ -52,7 +52,7 @@ class PathChecks:
             return True
         else:
             print("Static path is missing. Creating Dir")
-            os.mkdir(os.getenv("MTV_STATIC_PATH"))
+            subprocess.run(["sudo", "mkdir", os.getenv("MTV_STATIC_PATH")])
             if os.path.exists(os.getenv("MTV_STATIC_PATH")):
                 return True
             else:
@@ -97,7 +97,7 @@ class PathChecks:
         if os.path.exists(os.getenv("MTV_THUMBNAIL_PATH")):
             return True
         else:
-            os.mkdir(os.getenv("MTV_THUMBNAIL_PATH"))
+            subprocess.run(["sudo", "mkdir", os.getenv("MTV_THUMBNAIL_PATH")])
             if os.path.exists(os.getenv("MTV_THUMBNAIL_PATH")):
                 return True
             else:
