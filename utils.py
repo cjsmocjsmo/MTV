@@ -45,8 +45,7 @@ class PathChecks:
             return True
         else:
             print("Database path is missing.\nCreating mtv.db")
-            with open(os.getenv("MTV_DB_PATH"), "w") as f:
-                pass
+            subprocess.run(["sudo", "touch", os.getenv("MTV_DB_PATH")])
             if os.path.exists(os.getenv("MTV_DB_PATH")):
                 return True
             else:
