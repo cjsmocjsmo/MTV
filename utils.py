@@ -44,8 +44,13 @@ class PathChecks:
         if os.path.exists(os.getenv("MTV_DB_PATH")):
             return True
         else:
-            print("Database path is missing.")
-            return False
+            print("Database path is missing.\nCreating mtv.db")
+            with open(os.getenv("MTV_DB_PATH"), "w") as f:
+                pass
+            if os.path.exists(os.getenv("MTV_DB_PATH")):
+                return True
+            else:
+                return False
     
     def staticpath_check(self):
         if os.path.exists(os.getenv("MTV_STATIC_PATH")):
