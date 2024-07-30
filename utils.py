@@ -177,9 +177,9 @@ class BuildSoftware:
 
     def copy_mtvserverrust_binary(self):
         if os.path.exists("/usr/bin/mtvserver"):
-            subprocess.run(["sudo", "rm", "-f","/usr/bin/mtvserver"])
+            subprocess.run(["sudo", "rm", "-f","/usr/bin/mtvserverrust"])
         new_loc_dir = "/usr/bin/"
-        binary_loc = "".join((self.mtvdir, "target/release/mtvserver"))
+        binary_loc = "".join((self.mtvdir, "target/release/mtvserverrust"))
         subprocess.run(["sudo", "cp", "-pvr", binary_loc, new_loc_dir])
 
 class SystemdSetup:
