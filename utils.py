@@ -1,5 +1,5 @@
 import os
-import shutil
+# import shutil
 import subprocess
 
 
@@ -121,7 +121,6 @@ class PathChecks:
 class BuildSoftware:
     def __init__(self, CWD):
         self.CWD = CWD
-        # self.CWD = os.getcwd() # assuming /home/pi/MTV  
         self.setupdir = self.CWD + "/SetUp/"
         self.mtvdir = self.CWD + "/MTV/"
 
@@ -174,7 +173,6 @@ class BuildSoftware:
             subprocess.run(["sudo", "rm", "-f","/usr/bin/mtvsetup"])
         new_loc_dir = "/usr/bin/"
         binary_loc = "".join((self.setupdir, "target/release/mtvsetup"))
-        # shutil.copy(binary_loc, new_loc_dir)
         subprocess.run(["sudo", "cp", "-pvr", binary_loc, new_loc_dir])
 
     def copy_mtvserverrust_binary(self):
@@ -182,7 +180,6 @@ class BuildSoftware:
             subprocess.run(["sudo", "rm", "-f","/usr/bin/mtvserver"])
         new_loc_dir = "/usr/bin/"
         binary_loc = "".join((self.mtvdir, "target/release/mtvserver"))
-        # shutil.copy(binary_loc, new_loc_dir)
         subprocess.run(["sudo", "cp", "-pvr", binary_loc, new_loc_dir])
 
 class SystemdSetup:
