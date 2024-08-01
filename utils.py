@@ -1,7 +1,5 @@
 import os
-# import shutil
 import subprocess
-
 
 class SoftwareCheck:
     def mpv_check(self):

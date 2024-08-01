@@ -43,9 +43,6 @@ def install():
         sysd.reload_systemd_service()
         sysd.start_systemd_service()
 
-def update():
-    pass
-
 def uninstall():
     sysd = utils.SystemdSetup(CWD)
     if sysd.service_file_check():
@@ -70,7 +67,8 @@ def uninstall():
 
     print("MTV has been uninstalled.\nYou can now remove this directory.")
 
-    
+def update():
+    pass
 
 def main():
     parser = argparse.ArgumentParser(description="Manage MTV installation.")
