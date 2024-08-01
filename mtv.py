@@ -43,6 +43,10 @@ def install():
         sysd.reload_systemd_service()
         sysd.start_systemd_service()
 
+    if not os.path.exists("/tmp/mpvsocket"):
+        print("Creating mpvsocket")
+        subprocess.run(["sudo", "mkfifo", "/tmp/mpvsocket"])
+
 def uninstall():
     sysd = utils.SystemdSetup(CWD)
     if sysd.service_file_check():
@@ -64,6 +68,10 @@ def uninstall():
     if os.path.exists("/usr/share/MTV"):
         print("Removing MTV directory")
         subprocess.run(["sudo", "rm", "-rf", "/usr/share/MTV"])
+
+    if os.path.exists("/tmp/mpvsocket"):
+        print("Removing mpvsocket")
+        subprocess.run(["sudo", "rm", "/tmp/mpvsocket"])
 
     print("MTV has been uninstalled.\nYou can now remove this directory.")
 
