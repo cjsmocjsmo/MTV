@@ -99,7 +99,10 @@ class PathChecks:
         if os.path.exists(os.getenv("MTV_THUMBNAIL_PATH")):
             return True
         else:
-            subprocess.run(["sudo", "mkdir", os.getenv("MTV_THUMBNAIL_PATH")])
+            thumbpath = os.getenv("MTV_THUMBNAIL_PATH")
+            subprocess.run(["sudo", "mkdir", thumbpath])
+            subprocess.run(["sudo", "chown", "pimedia:pimedia", thumbpath])
+            subprocess.run(["sudo", "chmod", "777", thumbpath])
             if os.path.exists(os.getenv("MTV_THUMBNAIL_PATH")):
                 return True
             else:
@@ -197,7 +200,7 @@ class BuildSoftware:
         subprocess.run(["sudo", "cp", "-pvr", binary_loc, new_loc_dir])
 
     def run_setup(self):
-        subprocess.run(["/usr/bin/mtvsetup"])
+        subprocess.run(["sudo", "/usr/bin/mtvsetup"])
 
 class SystemdSetup:
     def __init__(self, CWD):
