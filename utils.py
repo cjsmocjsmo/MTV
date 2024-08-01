@@ -105,6 +105,17 @@ class PathChecks:
             else:
                 print("Thumbnail path is missing.")
                 return False
+
+    def websocket_check(self):
+        if os.path.exists("/tmp/mpvsocket"):
+            return True
+        else:
+            subprocess.run(["sudo", "mkfifo", "/tmp/mpvsocket"])
+            if os.path.exists("/tmp/mpvsocket"):
+                return True
+            else:
+                print("MPV socket is missing.")
+                return False
     
     def run_checks(self):
         dbpath = self.dbpath_check()
@@ -115,7 +126,8 @@ class PathChecks:
         moviespath = self.moviespath_check()
         posterpath = self.posterpath_check()
         thumbnailpath = self.thumbnailpath_check()
-        if dbpath and staticpath and tvpath and setuppath and mtvpath and moviespath and posterpath and thumbnailpath:
+        websocket = self.websocket_check()
+        if dbpath and staticpath and tvpath and setuppath and mtvpath and moviespath and posterpath and thumbnailpath and websocket:
             return True
         else:
             return False
@@ -183,6 +195,9 @@ class BuildSoftware:
         new_loc_dir = "/usr/bin/"
         binary_loc = "".join((self.mtvdir, "target/release/mtvserverrust"))
         subprocess.run(["sudo", "cp", "-pvr", binary_loc, new_loc_dir])
+
+    def run_setup(self):
+        subprocess.run(["/usr/bin/mtvsetup"])
 
 class SystemdSetup:
     def __init__(self, CWD):

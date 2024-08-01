@@ -26,10 +26,14 @@ def install():
     if sysd.service_file_check():
         sysd.stop_systemd_service()
 
-    print("Building software")
+    print("Building setup")
     builder = utils.BuildSoftware(CWD)
     builder.clone_or_pull_build_setup()
     builder.copy_setup_binary()
+    print("Running SetUp")
+    builder.run_setup()
+
+    print("Building mtvserverrust")
     builder.clone_or_pull_build_mtv_server()
     builder.copy_mtvserverrust_binary()
 
@@ -42,10 +46,6 @@ def install():
     else:
         sysd.reload_systemd_service()
         sysd.start_systemd_service()
-
-    if not os.path.exists("/tmp/mpvsocket"):
-        print("Creating mpvsocket")
-        subprocess.run(["sudo", "mkfifo", "/tmp/mpvsocket"])
 
 def uninstall():
     sysd = utils.SystemdSetup(CWD)
