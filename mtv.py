@@ -76,7 +76,20 @@ def uninstall():
     print("MTV has been uninstalled.\nYou can now remove this directory.")
 
 def update():
-    pass
+    sysd = utils.SystemdSetup(CWD)
+    if sysd.service_file_check():
+        sysd.stop_systemd_service()
+
+    builder = utils.BuildSoftware(CWD)
+    builder.clone_or_pull_build_setup()
+    builder.copy_setup_binary()
+    builder.run_setup()
+
+    builder.clone_or_pull_build_mtv_server()
+    builder.copy_mtvserverrust_binary()
+
+    sysd.start_systemd_service()
+    
 
 def main():
     parser = argparse.ArgumentParser(description="Manage MTV installation.")
